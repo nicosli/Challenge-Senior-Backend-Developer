@@ -2,6 +2,7 @@
 
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\XMLHandler;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,3 +18,10 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+
+/*
+* Artisan command to call XMLHandler Controller
+*/
+Artisan::command('XMLtoDataBase', function() {
+    XMLHandler::dump();
+})->purpose('Dump XML file to database');
