@@ -3,6 +3,7 @@
 use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\XMLHandler;
+use App\Http\Controllers\DataCache;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,10 @@ Artisan::command('inspire', function () {
 Artisan::command('XMLtoDataBase', function() {
     XMLHandler::dump();
 })->purpose('Dump XML file to database');
+
+/*
+* Artisan command to save the data into cache (redis)
+*/
+Artisan::command('saveDataToCache', function() {
+    DataCache::store();
+})->purpose('save the data into cache');
