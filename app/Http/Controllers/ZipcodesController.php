@@ -22,6 +22,7 @@ class ZipcodesController extends Controller
         $errorMessage = "";
         $codeResponse = 200;
         $input = ["zip_code" => $request->zip_code];
+        $cache = false;
 
         // rules to validate the request
         $rules = [
@@ -36,6 +37,7 @@ class ZipcodesController extends Controller
             if(Cache::has($request->zip_code)){
                 // get array from cache and convert to a collection
                 $addresses = collect(Cache::get($request->zip_code));
+                $cache = true;
             } else {
                 // query to get all locations with zip code
                 $addresses = Addresses::where('d_codigo', '=', '%:zip_code%');
@@ -85,7 +87,8 @@ class ZipcodesController extends Controller
                         "key" => (int)$item["c_mnpio"],
                         "name" => strtoupper(self::replaceCharacter($item["D_mnpio"]))
                     ];
-                })
+                }),
+                "cache" => $cache
             ];
 
 
