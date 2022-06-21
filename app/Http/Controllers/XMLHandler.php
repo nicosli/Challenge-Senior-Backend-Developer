@@ -13,10 +13,6 @@ class XMLHandler extends Controller
      * @return void
      */
     public static function dump(){
-        $baseFile = base_path() . "/resources/data";
-        
-        $zip = $baseFile . "/CPdescargaxml.zip";
-        UncompressFile::run($zip);
         
         // Read file from storage
         $file = base_path() . "/resources/data/CPdescarga.xml";

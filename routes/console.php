@@ -4,6 +4,7 @@ use Illuminate\Foundation\Inspiring;
 use Illuminate\Support\Facades\Artisan;
 use App\Http\Controllers\XMLHandler;
 use App\Http\Controllers\DataCache;
+use App\Http\Controllers\UncompressFile;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,20 @@ use App\Http\Controllers\DataCache;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+
+/*
+* Artisan command to uncompress zip file
+*/
+Artisan::command('UncompressFile', function() {
+    UncompressFile::run(base_path() . "/resources/data/CPdescargaxml.zip");
+})->purpose('Dump XML file to database');
+
+/*
+* Artisan command to remove zip file
+*/
+Artisan::command('removeFile', function() {
+    UncompressFile::removeFile(base_path() . "/resources/data/CPdescarga.xml");
+})->purpose('Dump XML file to database');
 
 /*
 * Artisan command to call XMLHandler Controller
